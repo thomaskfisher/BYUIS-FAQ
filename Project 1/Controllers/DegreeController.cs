@@ -14,8 +14,36 @@ namespace Project_1.Controllers
             return View();
         }
 
-        public ActionResult BSIS()
+        public ActionResult Degrees(string id)
         {
+            if (id == "BSIS")
+            {
+                ViewBag.Name = "Bachelors of Science, Information Systems";
+                ViewBag.Coordinator = "Dr. Conan Albrecht";
+                ViewBag.ProfTitle = "Professor of Information Systems";
+                ViewBag.OfficeAddress = "780 TNRB Provo, UT";
+                ViewBag.PhDEducation = "PhD, Information Systems, University of Arizona, 2000";
+                ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1997";
+                ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1997";
+                ViewBag.Picture = Url.Content("~/Content/Images/CAlbrecht.jpg");
+            }
+            if (id == "MISM")
+            {
+                ViewBag.Name = "Masters of Information Systems";
+                ViewBag.Coordinator = "Dr. Bonnie Anderson";
+                ViewBag.ProfTitle = "Associate Professor of Information Systems";
+                ViewBag.OfficeAddress = "776 TNRB Provo, UT";
+                ViewBag.PhDEducation = "PhD, Information Systems, Carnegie Mellon University, 2001";
+                ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1995";
+                ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1995";
+                ViewBag.Picture = Url.Content("~/Content/Images/BAnderson.jpg");
+            }
+            return View();
+        }
+
+        /*public ActionResult BSIS()
+        {
+
             ViewBag.Name = "Bachelors of Science, Information Systems";
             ViewBag.Coordinator = "Dr. Conan Albrecht";
             ViewBag.ProfTitle = "Professor of Information Systems";
@@ -40,6 +68,6 @@ namespace Project_1.Controllers
             ViewBag.Picture = Url.Content("~/Content/Images/BAnderson.jpg");
 
             return View();
-        }
+        }*/
     }
 }

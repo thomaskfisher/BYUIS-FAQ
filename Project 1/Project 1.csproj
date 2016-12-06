@@ -238,6 +238,7 @@
     <Content Include="Views\Degree\Index.cshtml" />
     <Content Include="Views\Degree\BSIS.cshtml" />
     <Content Include="Views\Degree\MISM.cshtml" />
+    <Content Include="Views\Degree\Degrees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
