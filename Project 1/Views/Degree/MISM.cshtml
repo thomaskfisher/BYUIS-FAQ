@@ -1,15 +1,19 @@
-﻿
+﻿@model Project_1.Models.DegreesAndQuestions
+
 @{
     ViewBag.Title = "MISM";
 }
 
-<ol class="breadcrumb">
+@*<ol class="breadcrumb">
     <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
     <li class="breadcrumb-item">@Html.ActionLink("Degrees", "Index", "Degree")</li>
     <li class="breadcrumb-item active">MISM</li>
-</ol>
+</ol>*@
 
-<h1>@ViewBag.Name</h1>
+@foreach (var item in Model.Degree)
+{
+    <h1>@Html.DisplayFor(modelItem => item.degreeName)</h1>
+
 
 <div class="container">
     <div class="row">
@@ -20,18 +24,18 @@
                         <img src="@ViewBag.Picture" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-10">
-                        <h4> @ViewBag.Coordinator </h4>
-                        <small>  @ViewBag.ProfTitle  </small>
+                        <h4> @Html.DisplayFor(modelItem => item.degreeCoordinator) </h4>
+                        <small>  @Html.DisplayFor(modelItem => item.coordinatorTitle)  </small>
                         <br />
-                        <small>@ViewBag.OfficeAddress</small>
+                        <small>@Html.DisplayFor(modelItem => item.coordinatorOfficeAddress)</small>
                         <br />
                         <p>
                             <br /><br />
-                            @ViewBag.PhDEducation
+                            @Html.DisplayFor(modelItem => item.phdEducation)
                             <br /><br />
-                            @ViewBag.MasterEducation
+                            @Html.DisplayFor(modelItem => item.mastersEducation)
                             <br /><br />
-                            @ViewBag.BachelorEducation
+                            @Html.DisplayFor(modelItem => item.bachelorsEducation)
                         </p>
                     </div>
                 </div>
@@ -39,154 +43,31 @@
         </div>
     </div>
 </div>
-
+}
 
 <h2>MISM Frequently Asked Questions</h2>
 
-<div class="container">
 
-    <div class="well">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">How do I apply?</h4>
-                <p class="text-right">By A. Campbell</p>
-                <p>
+@foreach (var item in Model.DegreeQuestion)
+{
+    <div class="container">
 
-                    You may apply to the Information Systems program if you have completed or are enrolled in all of the Pre-Information Systems Core courses. The deadline to apply to the program is the last working day of June at 4:30pm. Application to the program is done online and can be accessed here: https://marriottschool.byu.edu/apply/bsis/.
+        <div class="well">
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">@Html.DisplayFor(modelItem => item.question)</h4>
+                    @*<p class="text-right">By @Html.DisplayFor(modelItem => item.userID)</p>*@
+                    <p>@Html.DisplayFor(modelItem => item.answer)</p>
+                    <br />
 
-                </p>
-                <br />
-                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo1">Comment</button>
-                <div id="demo1" class="collapse">
-                    <br />
-                    <form>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <button type="reset" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="well">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">May I apply concurrently to the information systems program or accounting program and the management program?</h4>
-                <p class="text-right">By A. Campbell</p>
-                <p>
-                    Yes, you may apply concurrently to all undergraduate programs at the Marriott School. However, you may only enter into one of these programs.
-                </p>
-                <p>
-                    The information systems and accounting programs admit students only for the fall semester, and the management program will be doing the same beginning fall of 2016. Please be aware of deadlines and which requirements are needed to apply to each program. Visit https://marriottschool.byu.edu for more information.
-                </p>
-                <br />
-                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo2">Comment</button>
-                <div id="demo2" class="collapse">
-                    <br />
-                    <form>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <button type="reset" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="well">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">What are the prerequisites for the Information Systems junior core?</h4>
-                <p class="text-right">By A. Campbell</p>
-                <p>
-                    The prerequisite classes for the information systems junior core are as follows:
-                </p>
-                <ul>
-                    <li>IS 201 (IS 110 must be taken before or concurrently with IS 201)</li>
-                    <li>ACC 200</li>
-                    <li>FIN 201</li>
-                    <li>BUS M 241</li>
-                    <li>IS 303 (or CS 142)</li>
-                </ul>
-                <br />
-                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo3">Comment</button>
-                <div id="demo3" class="collapse">
-                    <br />
-                    <form>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <button type="reset" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="well">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">What generals will be covered with prerequisite classes?</h4>
-                <p class="text-right">By A. Campbell</p>
-                <p>
-                    Although only accounting 200 is a prerequisite for the Information Systems program, the following premanagement courses will count toward general education credit:
-                </p>
-                <ul>
-                    <li>ACC 200 GE: Quantitative Reasoning</li>
-                    <li>STAT 121 GE: Languages of Learning/Quantitative Reasoning</li>
-                    <li>MCOM 320 GE: Advanced Writing</li>
-                    <li>ECON 110 GE: Social Science/ Partial AHTG</li>
-                </ul>
-                <p>
-                    You will be required to take ECON 110, MCOM 320 and STAT 121 once admitted to the program. Completion of these courses before beginning the Management Core or MISM is highly recommended. If possible, it is helpful to have these courses complete before entering the junior core.
-                </p>
-                <br />
-                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo4">Comment</button>
-                <div id="demo4" class="collapse">
-                    <br />
-                    <form>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <button type="reset" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="well">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">What transfer classes count?</h4>
-                <p class="text-right">By A. Campbell</p>
-                <p>
-                    You can view information regarding transfer classes at https://marriottschool.byu.edu/advisement/classes/transfer-information. This site will help you navigate the process of inquiring about transfer classes. It includes a link to a list of previously evaluated transfer classes from various colleges. For classes that have not yet been evaluated by the Marriott School, please email a course syllabus, your name and BYU ID number to msm_transfer@byu.edu.
-                </p>
-                <br />
-                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo5">Comment</button>
-                <div id="demo5" class="collapse">
-                    <br />
-                    <form>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <button type="reset" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <a class="btn btn-success" href="@Url.Action("Edit", "QuestionAnswer", new { id = item.degreeQuestionID }, null)">Answer</a>
 
-<form>
-    <h2>Questions? Enter them here to have a current student answer them.</h2>
-    <div class="form-group">
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="reset" class="btn btn-primary">Submit</button>
-</form>
+}
+    
+
+<h2>Questions? Enter them here to have a current student answer them.</h2>
+<a class="btn btn-success" href="@Url.Action("AddMISMQuestion", "AddQuestion", null, null)">Ask A Question</a>

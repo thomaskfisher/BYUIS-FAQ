@@ -5,18 +5,20 @@ using System.Web;
 using Project_1.Models;
 using System.Data.Entity;
 
+//THESE DBSET'S ARE CREATED FOR ALL 4 MODELS
+
 namespace Project_1.DAL
 {
     public class ISFAQContext : DbContext
     {
-        public ISFAQContext()
-            : base("ISFAQContext")
+        public ISFAQContext() : base("ISFAQContext")
         {
 
         }
 
-        public DbSet<Customer_Instruments> Customers_Instrument { get; set; }
-        public DbSet<Customers> Customer { get; set; }
-        public DbSet<Instruments> Instrument { get; set; }
+        public DbSet<DegreeQuestions> Degree_Question { get; set; }
+        public DbSet<Degrees> Degree { get; set; }
+        public DbSet<Users> User { get; set; }
+        public DbSet<DegreesAndQuestions> DegreeAndQuestion { get; set; }
     }
 }

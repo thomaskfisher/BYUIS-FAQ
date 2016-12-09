@@ -1,0 +1,37 @@
+﻿@model Project_1.Models.DegreeQuestions
+
+@{
+    ViewBag.Title = "AddBSISQuestion";
+}
+
+<h2>Add a BSIS Question</h2>
+
+@using (Html.BeginForm("AddBSISQuestion", "AddQuestion", new { degreeID = 5 }, FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+
+        @{TempData["TempAnswer"] = "This question has not been answered yet. Add an answer by pressing the answer button.";}
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("degreeID", 5)
+        @Html.HiddenFor(m => m.degreeID)
+        @Html.HiddenFor(m => m.degreeQuestionID)
+        @Html.Hidden("userID", @Session["TESLA"])
+        @Html.Hidden("answer", @TempData["TempAnswer"])
+
+
+        <div class="form-group">
+            <h2>Enter your question</h2>
+            @Html.EditorFor(model => model.question, new { htmlattributes = new { @class = "form-control", placeholder = "Enter your question here"}})
+            
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-lg btn-primary btn-block" />
+            </div>
+        </div>
+        
+    </div>
+}

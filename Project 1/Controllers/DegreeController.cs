@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Project_1.DAL;
+using Project_1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,66 +10,41 @@ namespace Project_1.Controllers
 {
     public class DegreeController : Controller
     {
+
+        private ISFAQContext db = new ISFAQContext();
+
         // GET: Degree
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Degrees(string id)
+        // MUST BE LOGGED IN TO VIEW THE FAQ PAGE
+        [Authorize]
+        public ActionResult BSIS()
         {
-            if (id == "BSIS")
-            {
-                ViewBag.Name = "Bachelors of Science, Information Systems";
-                ViewBag.Coordinator = "Dr. Conan Albrecht";
-                ViewBag.ProfTitle = "Professor of Information Systems";
-                ViewBag.OfficeAddress = "780 TNRB Provo, UT";
-                ViewBag.PhDEducation = "PhD, Information Systems, University of Arizona, 2000";
-                ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1997";
-                ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1997";
-                ViewBag.Picture = Url.Content("~/Content/Images/CAlbrecht.jpg");
-            }
-            if (id == "MISM")
-            {
-                ViewBag.Name = "Masters of Information Systems";
-                ViewBag.Coordinator = "Dr. Bonnie Anderson";
-                ViewBag.ProfTitle = "Associate Professor of Information Systems";
-                ViewBag.OfficeAddress = "776 TNRB Provo, UT";
-                ViewBag.PhDEducation = "PhD, Information Systems, Carnegie Mellon University, 2001";
-                ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1995";
-                ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1995";
-                ViewBag.Picture = Url.Content("~/Content/Images/BAnderson.jpg");
-            }
-            return View();
-        }
-
-        /*public ActionResult BSIS()
-        {
-
-            ViewBag.Name = "Bachelors of Science, Information Systems";
-            ViewBag.Coordinator = "Dr. Conan Albrecht";
-            ViewBag.ProfTitle = "Professor of Information Systems";
-            ViewBag.OfficeAddress = "780 TNRB Provo, UT";
-            ViewBag.PhDEducation = "PhD, Information Systems, University of Arizona, 2000";
-            ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1997";
-            ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1997";
             ViewBag.Picture = Url.Content("~/Content/Images/CAlbrecht.jpg");
 
-            return View();
+            var model = new DegreesAndQuestions();
+            model.Degree = db.Degree.Where(m => m.degreeID == 5).ToList();
+            model.DegreeQuestion = db.Degree_Question.Where(m => m.degreeID == 5).ToList();
+            //PASSES THE CORRECT MODEL TO THE FAQ PAGE
+
+            return View(model);
         }
 
+        // MUST BE LOGGED IN TO VIEW THE FAQ PAGE
+        [Authorize]
         public ActionResult MISM()
         {
-            ViewBag.Name = "Masters of Information Systems";
-            ViewBag.Coordinator = "Dr. Bonnie Anderson";
-            ViewBag.ProfTitle = "Associate Professor of Information Systems";
-            ViewBag.OfficeAddress = "776 TNRB Provo, UT";
-            ViewBag.PhDEducation = "PhD, Information Systems, Carnegie Mellon University, 2001";
-            ViewBag.MasterEducation = "MAcc, Information Systems, Brigham Young University, 1995";
-            ViewBag.BachelorEducation = "BS, Accounting, Brigham Young University, 1995";
             ViewBag.Picture = Url.Content("~/Content/Images/BAnderson.jpg");
 
-            return View();
-        }*/
-    }
+            var model = new DegreesAndQuestions();
+            model.Degree = db.Degree.Where(m => m.degreeID == 6).ToList();
+            model.DegreeQuestion = db.Degree_Question.Where(m => m.degreeID == 6).ToList();
+            //PASSES THE CORRECT MODEL TO THE FAQ PAGE
+
+            return View(model);
+        }
+   }
 }
